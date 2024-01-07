@@ -66,7 +66,7 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
+            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
                 self.servant_away = True            
 
@@ -82,25 +82,6 @@ class OSRSConstruction(OSRSBot):
         time.sleep(.5)
         self.mouse.click(force_delay=True)
         time.sleep(.5)
-        self.pressKey("1")
-
-    def buildTable2(self, move=True):
-        markers = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)
-        
-        if move == True:
-            self.mouse.move_to(markers[0].random_point())
-            time.sleep(.1)
-
-        self.mouse.click(button="right", force_delay=True)
-        time.sleep(.5)
-        self.mouse.click(force_delay=True)
-        time.sleep(.8)
-        self.pressKey("6")
-        time.sleep(1)
-        self.mouse.click(button="right",force_delay=True)
-        time.sleep(.5)
-        self.mouse.click(force_delay=True)
-        time.sleep(.6)
         self.pressKey("1")
 
     def buildTable(self):
