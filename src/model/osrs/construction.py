@@ -18,6 +18,7 @@ class OSRSConstruction(OSRSBot):
         # Set option variables below (initial value is only used during headless testing)
         self.running_time = 60
         self.options_set = True
+        self.onTableMarker = False
 
     def create_options(self):
         """
@@ -80,6 +81,7 @@ class OSRSConstruction(OSRSBot):
 
     def callServant(self):
         servant = self.get_nearest_tagged_NPC()
+        self.onTableMarker = False
         self.mouse.move_to(servant.random_point())
         self.mouse.click(force_delay=True)
         time.sleep(.5)
@@ -113,8 +115,9 @@ class OSRSConstruction(OSRSBot):
         if tabletag != None:
             self.removeTable()
 
-        if not self.isWithinRect(marker):
+        if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
+            self.onTableMarker = True
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
@@ -133,12 +136,13 @@ class OSRSConstruction(OSRSBot):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
         tabletag = self.get_nearest_tag(clr.RED)
 
+        marker.__point_exists()
+
         if tabletag == None:
             return False
 
-        if not self.isWithinRect(marker):
+        if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
-
 
         self.mouse.click(button="right",force_delay=True)
         time.sleep(rd.fancy_normal_sample(.4, .6))
@@ -146,8 +150,6 @@ class OSRSConstruction(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.4, .6))
         self.pressKey("1")
 
-    def isWithinRect(self, rect: RuneLiteObject):
-        return rect.__point_exists(pag.position())
 
     def pressKey(self, key):
         pag.keyDown(key)
