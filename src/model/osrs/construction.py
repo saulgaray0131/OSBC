@@ -136,8 +136,6 @@ class OSRSConstruction(OSRSBot):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
         tabletag = self.get_nearest_tag(clr.RED)
 
-        marker.__point_exists()
-
         if tabletag == None:
             return False
 
