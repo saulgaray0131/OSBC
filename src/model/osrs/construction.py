@@ -65,15 +65,15 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            time.sleep(1)
+
             self.buildTable()
-            time.sleep(1)
+
             self.buildTable()
-            time.sleep(1)
+
             self.callServant()
-            time.sleep(.4)
+
             self.buildTable()
-            time.sleep(1)
+
 
         self.update_progress(1)
         self.log_msg("Finished.")
@@ -111,12 +111,11 @@ class OSRSConstruction(OSRSBot):
     def buildTable(self):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
         tabletag = self.get_nearest_tag(clr.RED)
-
         
         if tabletag != None:
             self.removeTable()
             print("Table found")
-            
+
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
             self.onTableMarker = True
@@ -149,6 +148,7 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(force_delay=True)
         time.sleep(rd.fancy_normal_sample(.6, .8))
         self.pressKey("1")
+        time.sleep(rd.fancy_normal_sample(.6, .8))
 
 
     def pressKey(self, key):
