@@ -54,7 +54,7 @@ class OSRSConstruction(OSRSBot):
           operator to access their functions.
         """
         # Setup APIs
-        api_m = MorgHTTPSocket()
+        self.api_m = MorgHTTPSocket()
         # api_s = StatusSocket()
         # Main loop
         start_time = time.time()
@@ -65,14 +65,8 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-
-            self.buildTable()
-
-            self.buildTable()
-
-            self.callServant()
-            time.sleep(1.5)
-            self.buildTable()
+            if self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK).count() <= 7:
+                self.callServant()
 
             
 
@@ -121,6 +115,11 @@ class OSRSConstruction(OSRSBot):
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
             self.onTableMarker = True
+
+        # Wait for servant
+        if self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK).count() < 6:
+            while self.get_nearest_tagged_NPC(clr.BLUE) == None:
+                time.sleep(.1)
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
