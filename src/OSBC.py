@@ -342,10 +342,11 @@ class App(customtkinter.CTk):
 if __name__ == "__main__":
     # To test a bot without the GUI, address the comments for each line below.
     from model.osrs.construction import OSRSConstruction  # Uncomment this line and replace <folder_bot_is_in> and <bot_class_name> accordingly to import your bot
+    time.sleep(2)
     app = App(test=True)  # Add the "test=True" argument to the App constructor call.
     #app.start()  # Comment out this line.
     import time
-    time.sleep(5)
+    
     app.test(OSRSConstruction())  # Uncomment this line and replace argument with your bot's instance.
 
     # IMPORTANT
