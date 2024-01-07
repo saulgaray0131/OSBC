@@ -2,6 +2,7 @@ import time
 
 import utilities.api.item_ids as ids
 import utilities.color as clr
+from utilities.geometry import RuneLiteObject
 import utilities.random_util as rd
 from model.osrs.osrs_bot import OSRSBot
 from utilities.api.morg_http_client import MorgHTTPSocket
@@ -64,9 +65,9 @@ class OSRSConstruction(OSRSBot):
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
             time.sleep(1)
-            self.buildTable(move=False)
+            self.buildTable()
             time.sleep(1)
-            self.buildTable(move=False)
+            self.buildTable()
             time.sleep(1)
             self.callServant()
             time.sleep(.4)
@@ -86,7 +87,7 @@ class OSRSConstruction(OSRSBot):
         time.sleep(.5)
         self.pressKey("1")
 
-    def buildTable(self, move=True):
+    def buildTable2(self, move=True):
         markers = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)
         
         if move == True:
@@ -105,9 +106,48 @@ class OSRSConstruction(OSRSBot):
         time.sleep(.6)
         self.pressKey("1")
 
-    def buildTable2(self):
-        pass
+    def buildTable(self):
+        marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
+        tabletag = self.get_nearest_tag(clr.RED)
 
+        if tabletag != None:
+            self.removeTable()
+
+        if not self.isWithinRect(marker):
+            self.mouse.move_to(marker.random_point())
+
+        # Left click then right click build
+        self.mouse.click(button="right", force_delay=True)
+        time.sleep(rd.fancy_normal_sample(.2, .4))
+        self.mouse.click(force_delay=True)
+        time.sleep(rd.fancy_normal_sample(.6, .9))
+        self.pressKey("6")
+        # Wait until table is built
+        while self.get_nearest_tag(clr.RED) == None:
+            time.sleep(.1)
+
+        # Remove table
+        self.removeTable()
+
+    def removeTable(self):
+        marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
+        tabletag = self.get_nearest_tag(clr.RED)
+
+        if tabletag == None:
+            return False
+
+        if not self.isWithinRect(marker):
+            self.mouse.move_to(marker.random_point())
+
+
+        self.mouse.click(button="right",force_delay=True)
+        time.sleep(rd.fancy_normal_sample(.4, .6))
+        self.mouse.click(force_delay=True)
+        time.sleep(rd.fancy_normal_sample(.4, .6))
+        self.pressKey("1")
+
+    def isWithinRect(self, rect: RuneLiteObject):
+        return rect.__point_exists(pag.position())
 
     def pressKey(self, key):
         pag.keyDown(key)
