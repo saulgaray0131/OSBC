@@ -71,7 +71,7 @@ class OSRSConstruction(OSRSBot):
             self.buildTable()
 
             self.callServant()
-
+            time.sleep(1)
             self.buildTable()
 
 
