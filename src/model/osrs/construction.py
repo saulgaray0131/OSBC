@@ -15,7 +15,7 @@ class OSRSConstruction(OSRSBot):
         description = "Tables"
         super().__init__(bot_title=bot_title, description=description)
         # Set option variables below (initial value is only used during headless testing)
-        self.running_time = 1
+        self.running_time = 60
         self.options_set = True
 
     def create_options(self):
