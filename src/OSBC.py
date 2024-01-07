@@ -76,7 +76,10 @@ class App(customtkinter.CTk):
             padx=0,
             pady=0,
         )
-        self.views["Select a game"] = self.home_view6
+        self.views["Select a game"] = self.home_view
+
+        # Script view and controller [DO NOT EDIT]
+        # self.views["Script"] is a dynamically changing view on frame_right that changes based on the model assigned to the controller
         self.views["Script"] = BotView(parent=self.frame_right)
         self.controller = BotController(model=None, view=self.views["Script"])
         self.views["Script"].set_controller(self.controller)
