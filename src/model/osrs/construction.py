@@ -98,9 +98,10 @@ class OSRSConstruction(OSRSBot):
 
         # Wait for servant
         if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
-            while self.get_nearest_tagged_NPC(clr.BLUE) == None:
+            while self.get_nearest_tagged_NPC(clr.BLUE) == None and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) >= 25:
                 time.sleep(.1)
             self.servant_away = False
+            #time.sleep(rd.fancy_normal_sample(.1, .2))
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
