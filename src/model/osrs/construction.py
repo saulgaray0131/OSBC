@@ -79,9 +79,7 @@ class OSRSConstruction(OSRSBot):
         self.onTableMarker = False
         self.mouse.move_to(servant.random_point())
         self.mouse.click(force_delay=True)
-        time.sleep(.5)
-        self.mouse.click(force_delay=True)
-        time.sleep(.5)
+        time.sleep(rd.fancy_normal_sample(.6, .8))
         self.pressKey("1")
 
     def buildTable(self):
@@ -101,7 +99,7 @@ class OSRSConstruction(OSRSBot):
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 25:
                 time.sleep(.1)
             self.servant_away = False
-            time.sleep(rd.fancy_normal_sample(.1, .2))
+            time.sleep(rd.fancy_normal_sample(.2, .4))
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
