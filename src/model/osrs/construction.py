@@ -59,6 +59,7 @@ class OSRSConstruction(OSRSBot):
         # Main loop
         start_time = time.time()
         end_time = self.running_time * 60
+        self.servant_away = False
         while time.time() - start_time < end_time:
             # -- Perform bot actions here --
             # Code within this block will LOOP until the bot is stopped.
@@ -67,9 +68,7 @@ class OSRSConstruction(OSRSBot):
             self.buildTable()
             if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
-
-            
-
+                self.servant_away = True            
 
         self.update_progress(1)
         self.log_msg("Finished.")
@@ -120,6 +119,7 @@ class OSRSConstruction(OSRSBot):
         if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
             while self.get_nearest_tagged_NPC(clr.BLUE) == None:
                 time.sleep(.1)
+            self.servant_away = False
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
