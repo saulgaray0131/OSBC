@@ -65,7 +65,7 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK).count() <= 7:
+            if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
 
             
@@ -117,7 +117,7 @@ class OSRSConstruction(OSRSBot):
             self.onTableMarker = True
 
         # Wait for servant
-        if self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK).count() < 6:
+        if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
             while self.get_nearest_tagged_NPC(clr.BLUE) == None:
                 time.sleep(.1)
 
