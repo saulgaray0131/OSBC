@@ -121,7 +121,7 @@ class OSRSConstruction(OSRSBot):
         tabletag = self.get_nearest_tag(clr.RED)
 
         if tabletag == None:
-            return False
+            self.buildTable()
 
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
