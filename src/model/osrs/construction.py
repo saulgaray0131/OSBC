@@ -101,7 +101,7 @@ class OSRSConstruction(OSRSBot):
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 25:
                 time.sleep(.1)
             self.servant_away = False
-            #time.sleep(rd.fancy_normal_sample(.1, .2))
+            time.sleep(rd.fancy_normal_sample(.1, .2))
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
