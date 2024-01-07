@@ -145,7 +145,7 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(button="right",force_delay=True)
         time.sleep(rd.fancy_normal_sample(.4, .6))
         self.mouse.click(force_delay=True)
-        time.sleep(rd.fancy_normal_sample(.4, .6))
+        time.sleep(rd.fancy_normal_sample(.6, .8))
         self.pressKey("1")
 
 
