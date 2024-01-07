@@ -112,9 +112,11 @@ class OSRSConstruction(OSRSBot):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
         tabletag = self.get_nearest_tag(clr.RED)
 
+        
         if tabletag != None:
             self.removeTable()
-
+            print("Table found")
+            
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
             self.onTableMarker = True
