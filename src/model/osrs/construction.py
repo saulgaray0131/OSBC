@@ -147,16 +147,16 @@ class OSRSConstruction(OSRSBot):
             self.log_msg("Finding remove")
             time.sleep(.05)
 
-        time.sleep(rd.fancy_normal_sample(.3, .4))
+        time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click(force_delay=True)
         self.log_msg("3")
         # Check if popup is ready then press 6
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             self.log_msg("Finding remove chat")
             time.sleep(.05)
-        time.sleep(rd.fancy_normal_sample(.3, .4))
+        time.sleep(rd.fancy_normal_sample(.4, .5))
         self.pressKey("1")
-        time.sleep(rd.fancy_normal_sample(.6, .8))
+        time.sleep(rd.fancy_normal_sample(.2, .4))
         self.log_msg("4")
         
     def pressKey(self, key):
