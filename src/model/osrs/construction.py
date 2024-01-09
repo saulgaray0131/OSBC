@@ -118,8 +118,11 @@ class OSRSConstruction(OSRSBot):
         self.log_msg("10")
         time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click()
-        self.log_msg("11")
-        time.sleep(rd.fancy_normal_sample(.7, .9))
+        
+        while ocr.find_text("Creation", self.win.game_view, ocr.BOLD_12, [clr.ORANGE, clr.YELLOW]) == None:
+            self.log_msg("Finding creation")
+            time.sleep(.05)
+        time.sleep(rd.fancy_normal_sample(.1, .3))
         self.pressKey("6")
         time.sleep(rd.fancy_normal_sample(.3, .4))
         self.log_msg("12")
