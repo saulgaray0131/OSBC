@@ -157,17 +157,15 @@ class OSRSConstruction(OSRSBot):
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.6, .8))
         self.log_msg("4")
-
-    def clickWhenOption(self, text):
-        self.mouse.click_delay = True
         
-
     def pressKey(self, key):
+        self.log_msg("key press down" + key)
         pag.keyDown(key)
         LOWER_BOUND_CLICK = 0.8  # Milliseconds
         UPPER_BOUND_CLICK = 0.3  # Milliseconds
         AVERAGE_CLICK = 0.1  # Milliseconds
         time.sleep(rd.truncated_normal_sample(LOWER_BOUND_CLICK, UPPER_BOUND_CLICK, AVERAGE_CLICK))
         pag.keyUp(key)
+        self.log_msg("key press up" + key)
 
     
