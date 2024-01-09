@@ -109,7 +109,7 @@ class OSRSConstruction(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.6, .9))
         self.pressKey("6")
 
-        self.get
+        
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
             time.sleep(.1)
