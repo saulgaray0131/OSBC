@@ -155,6 +155,7 @@ class OSRSConstruction(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.3, .4))
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.6, .8))
+        self.log_msg("4")
 
     def clickWhenOption(self, text):
         self.mouse.click_delay = True
