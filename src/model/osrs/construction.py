@@ -68,7 +68,7 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 13:
+            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
                 self.servant_away = True            
 
@@ -104,7 +104,7 @@ class OSRSConstruction(OSRSBot):
         self.log_msg("8")
         # Wait for servant
         if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
-            while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 25:
+            while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 24:
                 self.log_msg("waiting for servant")
                 time.sleep(.05)
             self.servant_away = False
