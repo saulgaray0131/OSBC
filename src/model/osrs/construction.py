@@ -87,6 +87,7 @@ class OSRSConstruction(OSRSBot):
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.3, .4))   
         self.pressKey("1")
+        time.sleep(rd.fancy_normal_sample(.2, .4))   
 
     def buildTable(self):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
