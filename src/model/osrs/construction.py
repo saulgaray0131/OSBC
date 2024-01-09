@@ -83,7 +83,7 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(force_delay=True)
         # Check if popup is ready then press 1
         while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
-            print("Looking for last")
+            self.log_msg("Looking for last")
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.3, .4))   
         self.pressKey("1")
@@ -94,7 +94,7 @@ class OSRSConstruction(OSRSBot):
         
         if tabletag != None:
             self.removeTable()
-            print("Table found")
+            self.log_msg("Table found")
 
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
@@ -103,7 +103,7 @@ class OSRSConstruction(OSRSBot):
         # Wait for servant
         if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 25:
-                print("waiting for servant")
+                self.log_msg("waiting for servant")
                 time.sleep(.05)
             self.servant_away = False
             time.sleep(rd.fancy_normal_sample(.2, .4))
@@ -111,7 +111,7 @@ class OSRSConstruction(OSRSBot):
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
         while ocr.find_text("Build", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
-            print("Finding build")
+            self.log_msg("Finding build")
             time.sleep(.05)
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
@@ -122,10 +122,10 @@ class OSRSConstruction(OSRSBot):
         
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
-            print("Looking for table tag")
+            self.log_msg("Looking for table tag")
             time.sleep(.05)
 
-        print("1")
+        self.log_msg("1")
         # Remove table
         self.removeTable()
 
@@ -139,18 +139,18 @@ class OSRSConstruction(OSRSBot):
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
 
-        print("2")
+        self.log_msg("2")
         self.mouse.click(button="right",force_delay=True)
         while ocr.find_text("Remove", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
-            print("Finding remove")
+            self.log_msg("Finding remove")
             time.sleep(.05)
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click(force_delay=True)
-        print("3")
+        self.log_msg("3")
         # Check if popup is ready then press 6
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
-            print("Finding remove chat")
+            self.log_msg("Finding remove chat")
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.3, .4))
         self.pressKey("1")
