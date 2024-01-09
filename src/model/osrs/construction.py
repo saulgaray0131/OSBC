@@ -108,7 +108,7 @@ class OSRSConstruction(OSRSBot):
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
-        while ocr.find_text("Build", marker, ocr.BOLD_12, clr.WHITE) == None:
+        while ocr.find_text("Build", marker.rect, ocr.BOLD_12, clr.WHITE) == None:
             time.sleep(.05)
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
