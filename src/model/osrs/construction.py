@@ -132,9 +132,8 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(force_delay=True)
 
         # Check if popup is ready then press 6
-        while ocr.find_text("remove", self.win.chat, ocr.QUILL, clr.RED) == None:
-            time.sleep(.1)
-        time.sleep(rd.fancy_normal_sample(.05, .1))
+        while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
+            time.sleep(.05)
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.6, .8))
 
