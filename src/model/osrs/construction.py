@@ -147,7 +147,7 @@ class OSRSConstruction(OSRSBot):
             self.log_msg("Finding remove")
             time.sleep(.05)
 
-        time.sleep(rd.fancy_normal_sample(.1, .3))
+        time.sleep(rd.fancy_normal_sample(.3, .4))
         self.mouse.click(force_delay=True)
         self.log_msg("3")
         # Check if popup is ready then press 6
