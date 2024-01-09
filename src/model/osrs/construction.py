@@ -154,7 +154,6 @@ class OSRSConstruction(OSRSBot):
 
     def pressKey(self, key):
         pag.keyDown(key)
-        pag.pr
         LOWER_BOUND_CLICK = 0.8  # Milliseconds
         UPPER_BOUND_CLICK = 0.3  # Milliseconds
         AVERAGE_CLICK = 0.1  # Milliseconds
