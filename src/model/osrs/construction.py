@@ -68,7 +68,7 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
+            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 15:
                 self.callServant()
                 self.servant_away = True            
 
@@ -85,9 +85,9 @@ class OSRSConstruction(OSRSBot):
         while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             self.log_msg("Looking for last")
             time.sleep(.05)
-        time.sleep(rd.fancy_normal_sample(.4, .5))   
+        time.sleep(rd.fancy_normal_sample(.5, .6))   
         self.pressKey("1")
-        time.sleep(rd.fancy_normal_sample(.2, .4))   
+        time.sleep(rd.fancy_normal_sample(.2, .3))   
 
     def buildTable(self):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
