@@ -61,13 +61,14 @@ class OSRSConstruction(OSRSBot):
         start_time = time.time()
         end_time = self.running_time * 60
         self.servant_away = False
+        self.mouse.click_delay = True
         while time.time() - start_time < end_time:
             # -- Perform bot actions here --
             # Code within this block will LOOP until the bot is stopped.
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
+            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 13:
                 self.callServant()
                 self.servant_away = True            
 
@@ -80,7 +81,10 @@ class OSRSConstruction(OSRSBot):
         self.onTableMarker = False
         self.mouse.move_to(servant.random_point())
         self.mouse.click(force_delay=True)
-        time.sleep(rd.fancy_normal_sample(.6, .8))
+        # Check if popup is ready then press 1
+        while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
+            time.sleep(.05)
+        time.sleep(rd.fancy_normal_sample(.3, .4))   
         self.pressKey("1")
 
     def buildTable(self):
@@ -104,15 +108,18 @@ class OSRSConstruction(OSRSBot):
 
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
-        time.sleep(rd.fancy_normal_sample(.2, .4))
-        self.mouse.click(force_delay=True)
+        while ocr.find_text("Build", marker, ocr.BOLD_12, clr.WHITE) == None:
+            time.sleep(.05)
+
+        time.sleep(rd.fancy_normal_sample(.1, .3))
+        self.mouse.click()
         time.sleep(rd.fancy_normal_sample(.6, .9))
         self.pressKey("6")
 
         
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
-            time.sleep(.1)
+            time.sleep(.05)
 
         # Remove table
         self.removeTable()
@@ -134,10 +141,13 @@ class OSRSConstruction(OSRSBot):
         # Check if popup is ready then press 6
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             time.sleep(.05)
-        time.sleep(.4)
+        time.sleep(rd.fancy_normal_sample(.3, .4))
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.6, .8))
 
+    def clickWhenOption(self, text):
+        self.mouse.click_delay = True
+        
 
     def pressKey(self, key):
         pag.keyDown(key)
