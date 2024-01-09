@@ -85,7 +85,7 @@ class OSRSConstruction(OSRSBot):
         while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             self.log_msg("Looking for last")
             time.sleep(.05)
-        time.sleep(rd.fancy_normal_sample(.3, .4))   
+        time.sleep(rd.fancy_normal_sample(.4, .5))   
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.2, .4))   
 
