@@ -68,7 +68,7 @@ class OSRSConstruction(OSRSBot):
 
             self.update_progress((time.time() - start_time) / end_time)
             self.buildTable()
-            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 15:
+            if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
                 self.servant_away = True            
 
