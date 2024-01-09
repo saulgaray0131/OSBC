@@ -125,6 +125,7 @@ class OSRSConstruction(OSRSBot):
             print("Looking for table tag")
             time.sleep(.05)
 
+        print("1")
         # Remove table
         self.removeTable()
 
@@ -138,7 +139,7 @@ class OSRSConstruction(OSRSBot):
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
 
-        
+        print("2")
         self.mouse.click(button="right",force_delay=True)
         while ocr.find_text("Remove", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
             print("Finding remove")
@@ -146,7 +147,7 @@ class OSRSConstruction(OSRSBot):
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click(force_delay=True)
-
+        print("3")
         # Check if popup is ready then press 6
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             print("Finding remove chat")
