@@ -109,6 +109,7 @@ class OSRSConstruction(OSRSBot):
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
         while ocr.find_text("Build", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
+            print("Finding build")
             time.sleep(.05)
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
@@ -134,8 +135,10 @@ class OSRSConstruction(OSRSBot):
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
 
+        
         self.mouse.click(button="right",force_delay=True)
         while ocr.find_text("Remove", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
+            print("Finding remove")
             time.sleep(.05)
 
         time.sleep(rd.fancy_normal_sample(.1, .3))
@@ -143,6 +146,7 @@ class OSRSConstruction(OSRSBot):
 
         # Check if popup is ready then press 6
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
+            print("Finding remove chat")
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.3, .4))
         self.pressKey("1")
