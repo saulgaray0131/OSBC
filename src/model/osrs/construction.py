@@ -8,6 +8,7 @@ from model.osrs.osrs_bot import OSRSBot
 from utilities.api.morg_http_client import MorgHTTPSocket
 from utilities.api.status_socket import StatusSocket
 import pyautogui as pag
+import utilities.ocr as ocr
 
 
 class OSRSConstruction(OSRSBot):
@@ -107,6 +108,8 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(force_delay=True)
         time.sleep(rd.fancy_normal_sample(.6, .9))
         self.pressKey("6")
+
+        self.get
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
             time.sleep(.1)
@@ -127,7 +130,11 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(button="right",force_delay=True)
         time.sleep(rd.fancy_normal_sample(.4, .6))
         self.mouse.click(force_delay=True)
-        time.sleep(rd.fancy_normal_sample(.6, .8))
+
+        # Check if popup is ready then press 6
+        while ocr.find_text("remove", self.win.chat, ocr.QUILL, clr.RED) == None:
+            time.sleep(.1)
+        time.sleep(rd.fancy_normal_sample(.05, .1))
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.6, .8))
 
