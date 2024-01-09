@@ -85,7 +85,7 @@ class OSRSConstruction(OSRSBot):
         while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             self.log_msg("Looking for last")
             time.sleep(.05)
-        time.sleep(rd.fancy_normal_sample(.5, .6))   
+        time.sleep(rd.fancy_normal_sample(.6, .7))   
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.2, .3))   
 
@@ -158,7 +158,7 @@ class OSRSConstruction(OSRSBot):
         while ocr.find_text("remove", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
             self.log_msg("Finding remove chat")
             time.sleep(.05)
-        time.sleep(rd.fancy_normal_sample(.5, .6))
+        time.sleep(rd.fancy_normal_sample(.6, .7))
         self.pressKey("1")
         time.sleep(rd.fancy_normal_sample(.2, .4))
         self.log_msg("4")
