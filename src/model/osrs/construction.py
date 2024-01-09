@@ -99,7 +99,7 @@ class OSRSConstruction(OSRSBot):
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
             self.onTableMarker = True
-
+        self.log_msg("8")
         # Wait for servant
         if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 25:
@@ -107,13 +107,13 @@ class OSRSConstruction(OSRSBot):
                 time.sleep(.05)
             self.servant_away = False
             time.sleep(rd.fancy_normal_sample(.2, .4))
-
+        self.log_msg("9")
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
         while ocr.find_text("Build", self.win.game_view, ocr.BOLD_12, [clr.WHITE, clr.YELLOW]) == None:
             self.log_msg("Finding build")
             time.sleep(.05)
-
+        self.log_msg("10")
         time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click()
         time.sleep(rd.fancy_normal_sample(.6, .9))
