@@ -119,9 +119,9 @@ class OSRSConstruction(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.1, .3))
         self.mouse.click()
         self.log_msg("11")
-        time.sleep(rd.fancy_normal_sample(.5, .8))
+        time.sleep(rd.fancy_normal_sample(.6, .8))
         self.pressKey("6")
-        time.sleep(rd.fancy_normal_sample(.2, .3))
+        time.sleep(rd.fancy_normal_sample(.3, .4))
         self.log_msg("12")
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
