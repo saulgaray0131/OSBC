@@ -83,6 +83,7 @@ class OSRSConstruction(OSRSBot):
         self.mouse.click(force_delay=True)
         # Check if popup is ready then press 1
         while ocr.find_text("last", self.win.chat, ocr.QUILL_8, [clr.RED, clr.BLACK]) == None:
+            print("Looking for last")
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.3, .4))   
         self.pressKey("1")
@@ -121,6 +122,7 @@ class OSRSConstruction(OSRSBot):
         
         # Wait until table is built
         while self.get_nearest_tag(clr.RED) == None:
+            print("Looking for table tag")
             time.sleep(.05)
 
         # Remove table
