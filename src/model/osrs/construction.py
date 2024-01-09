@@ -93,8 +93,9 @@ class OSRSConstruction(OSRSBot):
         tabletag = self.get_nearest_tag(clr.RED)
         
         if tabletag != None:
+            self.log_msg("Table not found")
             self.removeTable()
-            self.log_msg("Table found")
+            
 
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
