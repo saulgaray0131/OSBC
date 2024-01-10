@@ -70,7 +70,7 @@ class OSRSConstruction(OSRSBot):
             self.buildTable()
             if not self.servant_away and len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 7:
                 self.callServant()
-                self.servant_away = True            
+                         
 
         self.update_progress(1)
         self.log_msg("Finished.")
@@ -87,7 +87,8 @@ class OSRSConstruction(OSRSBot):
             time.sleep(.05)
         time.sleep(rd.fancy_normal_sample(.6, .7))   
         self.pressKey("1")
-        time.sleep(rd.fancy_normal_sample(.4, .5))   
+        time.sleep(rd.fancy_normal_sample(.4, .5))
+        self.servant_away = True   
 
     def buildTable(self):
         marker = self.get_all_tagged_in_rect(self.win.game_view, clr.GREEN)[0]
@@ -103,10 +104,12 @@ class OSRSConstruction(OSRSBot):
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 24:
                 # Stuck servant
                 if self.get_nearest_tagged_NPC() != None:
+                    self.log_msg("servant idle: " + s_count)
                     s_count += 1
 
                 if s_count >= 20:
                     self.callServant()
+                    return
 
                 self.log_msg("Waiting for servant")
                 time.sleep(.1)
