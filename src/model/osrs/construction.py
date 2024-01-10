@@ -17,7 +17,7 @@ class OSRSConstruction(OSRSBot):
         description = "Tables"
         super().__init__(bot_title=bot_title, description=description)
         # Set option variables below (initial value is only used during headless testing)
-        self.running_time = 60
+        self.running_time = 60 * 3.85
         self.options_set = True
         self.onTableMarker = False
 
@@ -97,18 +97,29 @@ class OSRSConstruction(OSRSBot):
             self.log_msg("Table not found")
             self.removeTable()
             
+        # Wait for servant
+        if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
+            s_count = 0
+            while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 24:
+                # Stuck servant
+                if self.get_nearest_tagged_NPC() != None:
+                    s_count += 1
+
+                if s_count >= 10:
+                    self.callServant()
+
+                self.log_msg("Waiting for servant")
+                time.sleep(.05)
+                
+            self.servant_away = False
+            time.sleep(rd.fancy_normal_sample(.2, .4))
+
 
         if not self.onTableMarker:
             self.mouse.move_to(marker.random_point())
             self.onTableMarker = True
         self.log_msg("8")
-        # Wait for servant
-        if len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) < 6:
-            while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 24:
-                self.log_msg("waiting for servant")
-                time.sleep(.05)
-            self.servant_away = False
-            time.sleep(rd.fancy_normal_sample(.2, .4))
+
         self.log_msg("9")
         # Left click then right click build
         self.mouse.click(button="right", force_delay=True)
