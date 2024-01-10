@@ -105,7 +105,7 @@ class OSRSConstruction(OSRSBot):
                 if self.get_nearest_tagged_NPC() != None:
                     s_count += 1
 
-                if s_count >= 10:
+                if s_count >= 5:
                     self.callServant()
 
                 self.log_msg("Waiting for servant")
