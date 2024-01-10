@@ -104,7 +104,7 @@ class OSRSConstruction(OSRSBot):
             while len(self.api_m.get_inv_item_indices(ids.MAHOGANY_PLANK)) <= 24:
                 # Stuck servant
                 if self.get_nearest_tagged_NPC() != None:
-                    self.log_msg("servant idle: " + s_count)
+                    self.log_msg("servant idle: " + str(s_count))
                     s_count += 1
 
                 if s_count >= 20:
