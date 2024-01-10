@@ -105,11 +105,11 @@ class OSRSConstruction(OSRSBot):
                 if self.get_nearest_tagged_NPC() != None:
                     s_count += 1
 
-                if s_count >= 5:
+                if s_count >= 20:
                     self.callServant()
 
                 self.log_msg("Waiting for servant")
-                time.sleep(.05)
+                time.sleep(.1)
                 
             self.servant_away = False
             time.sleep(rd.fancy_normal_sample(.2, .4))
