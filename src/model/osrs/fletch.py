@@ -235,7 +235,7 @@ class OSRSFletching(OSRSBot):
             return
         
         count = 0
-        while len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW)) != 14:
+        while len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW)) != 14:
             if count > 20:
                 self.log_msg("Fletch wait timed out")
                 return
