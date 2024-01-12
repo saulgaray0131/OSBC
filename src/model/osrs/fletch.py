@@ -130,7 +130,8 @@ class OSRSFletching(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.2, .4))
 
     def getItems(self):
-        if not self.api_m.get_is_inv_empty():
+
+        if not self.api_m.get_is_inv_empty() and (len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) != 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) != 14):
             self.log_msg("Inventory is not empty")
             self.emptyInv()
 
