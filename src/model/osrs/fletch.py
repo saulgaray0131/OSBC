@@ -259,7 +259,12 @@ class OSRSFletching(OSRSBot):
         self.log_msg(str(id) + " found at index: " + str(index))
         return self.win.inventory_slots[index]
 
-    def closeBank(self):        
+    def closeBank(self):     
+
+        if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) == 14:
+            self.log_msg("Items already in inv, bank")
+            return
+
         count = 0
         while ocr.find_text(["Rearrange", "Withdraw", "Quantity"], self.win.game_view, ocr.PLAIN_12, clr.ORANGE) == None:
             if count >= 20:
