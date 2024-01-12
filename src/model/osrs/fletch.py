@@ -260,13 +260,11 @@ class OSRSFletching(OSRSBot):
         return self.win.inventory_slots[index]
 
     def closeBank(self):     
-        count = 0
-        while ocr.find_text(["Rearrange", "Withdraw", "Quantity"], self.win.game_view, ocr.PLAIN_12, clr.ORANGE) == None:
-            if count >= 20:
-                self.log_msg("Bank open search timed out (close)...")
-                return
-            time.sleep(.05)
-            count += 1
+        bank_tag = self.get_nearest_tag(clr.BLUE)
+
+        if bank_tag != None:
+            self.log_msg("Bank tag found, bank not open")
+            return
 
         self.pressKey("esc")
 
