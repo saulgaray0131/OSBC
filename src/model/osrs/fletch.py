@@ -100,7 +100,7 @@ class OSRSFletching(OSRSBot):
 
     def openBank(self):
         if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) == 14:
-            self.log_msg("Items already in inv")
+            self.log_msg("Items already in inv, bank")
             return
         
         bank_tag = self.get_nearest_tag(clr.BLUE)
