@@ -99,7 +99,7 @@ class OSRSFletching(OSRSBot):
         self.stop()
 
     def openBank(self):
-        if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) == 14:
+        if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW_U)) == 14:
             self.log_msg("Items already in inv, bank")
             return
         
@@ -135,7 +135,7 @@ class OSRSFletching(OSRSBot):
 
     def getItems(self):
 
-        if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) == 14:
+        if len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14 and len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW_U)) == 14:
             self.log_msg("Items already in inv")
             return
 
@@ -143,7 +143,7 @@ class OSRSFletching(OSRSBot):
             self.log_msg("Inventory is not empty")
             self.emptyInv()
 
-        bow_img = self.searchImg("bowu.png", self.win.game_view)
+        bow_img = self.searchImg("longbow.png", self.win.game_view)
         string_img = self.searchImg("string.png", self.win.game_view)
 
         if bow_img == None:
@@ -155,12 +155,12 @@ class OSRSFletching(OSRSBot):
             return
 
         self.mouse.move_to(bow_img.random_point(), mouseSpeed="fastest")
-        if self.mouseover_text(["Magic", "shortbow", "short", "bow", "(u)"], clr.OFF_ORANGE) == False:
+        if self.mouseover_text(["Magic", "longbow", "long", "bow", "(u)"], clr.OFF_ORANGE) == False:
             self.log_msg("Bad bow move to: " + self.mouseover_text())
             return
         self.mouse.click()
         count = 0
-        while not len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) == 14:
+        while not len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW_U)) == 14:
             if count >= 20:
                 self.log_msg("Bow click timed out")
                 return
@@ -187,7 +187,7 @@ class OSRSFletching(OSRSBot):
             self.log_msg("Inventory is empty")
             return
         
-        if len(self.api_m.get_inv_item_indices(ids.MAGIC_SHORTBOW_U)) != 14:
+        if len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW_U)) != 14:
             self.log_msg("Invalid amount of bows u")
             return
         
@@ -195,7 +195,7 @@ class OSRSFletching(OSRSBot):
             self.log_msg("Invalid amount of bow string")
             return
         
-        #bow_img = self.getInvItem(ids.MAGIC_SHORTBOW_U)
+        #bow_img = self.getInvItem(ids.MAGIC_LONGBOW_U)
         #string_img = self.getInvItem(ids.BOW_STRING)
 
         inv_slots = rand.choice([(12,16),(16,13), (13,14)])
@@ -226,7 +226,7 @@ class OSRSFletching(OSRSBot):
         time.sleep(rd.fancy_normal_sample(.6, .8))
 
     def waitFletch(self):
-        if not self.api_m.get_if_item_in_inv(ids.MAGIC_SHORTBOW_U):
+        if not self.api_m.get_if_item_in_inv(ids.MAGIC_LONGBOW_U):
             self.log_msg("Bows not found in inv")
             return
         
