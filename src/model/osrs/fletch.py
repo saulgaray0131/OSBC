@@ -155,9 +155,9 @@ class OSRSFletching(OSRSBot):
             return
 
         self.mouse.move_to(bow_img.random_point(), mouseSpeed="fastest")
-        if self.mouseover_text(["Magic", "longbow", "long", "bow", "(u)"], clr.OFF_ORANGE) == False:
-            self.log_msg("Bad bow move to: " + self.mouseover_text())
-            return
+       # if self.mouseover_text(["Magic", "longbow", "long", "bow", "(u)"], clr.OFF_ORANGE) == False:
+       #     self.log_msg("Bad bow move to: " + self.mouseover_text())
+        #    return
         self.mouse.click()
         count = 0
         while not len(self.api_m.get_inv_item_indices(ids.MAGIC_LONGBOW_U)) == 14:
@@ -168,9 +168,9 @@ class OSRSFletching(OSRSBot):
             count += 1
 
         self.mouse.move_to(string_img.random_point(), mouseSpeed="fastest")
-        if self.mouseover_text(["Bow", "string"], clr.OFF_ORANGE) == False:
-            self.log_msg("Bad bow string move to: " + self.mouseover_text())
-            return
+       # if self.mouseover_text(["Bow", "string"], clr.OFF_ORANGE) == False:
+       #     self.log_msg("Bad bow string move to: " + self.mouseover_text())
+       #     return
         self.mouse.click()
         count = 0
         while not len(self.api_m.get_inv_item_indices(ids.BOW_STRING)) == 14:
