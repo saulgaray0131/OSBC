@@ -92,8 +92,8 @@ class OSRSFletching(OSRSBot):
             self.emptyInv()
 
 
-            self.log_msg("Current xp: " + str(self.api_m.get_skill_xp("fletching")))
-            if self.api_m.get_skill_xp("fletching") > 5900000:
+            self.log_msg("Current xp: " + str(self.api_m.get_skill_xp("Fletching")))
+            if self.api_m.get_skill_xp("Fletching") > 5900000:
                 self.stop()
             
             
