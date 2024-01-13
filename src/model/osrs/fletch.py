@@ -90,6 +90,11 @@ class OSRSFletching(OSRSBot):
             self.waitFletch()
             self.openBank()
             self.emptyInv()
+
+
+            self.log_msg("Current xp: " + str(self.api_m.get_skill_xp("fletching")))
+            if self.api_m.get_skill_xp("fletching") > 5900000:
+                self.stop()
             
             
                          
