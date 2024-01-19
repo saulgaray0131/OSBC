@@ -20,7 +20,7 @@ class OSRSCrafting(OSRSBot):
         description = "Air battlestaves"
         super().__init__(bot_title=bot_title, description=description)
         # Set option variables below (initial value is only used during headless testing)
-        self.running_time = 60 * 3.85
+        self.running_time = 60 * 5.21
         self.options_set = True
         self.onTableMarker = False
 
