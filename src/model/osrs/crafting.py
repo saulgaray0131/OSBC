@@ -93,7 +93,7 @@ class OSRSCrafting(OSRSBot):
 
 
             self.log_msg("Current xp: " + str(self.api_m.get_skill_xp("Crafting")))
-            if self.api_m.get_skill_xp("Crafting") > 13034000:
+            if self.api_m.get_skill_xp("Crafting") > 13030000:
                 self.stop()
             
             
