@@ -304,7 +304,7 @@ class Bot(ABC):
                 tween=pytweening.easeInOutQuad,
             )
             self.mouse.click()
-        time.sleep(rd.fancy_normal_sample(.05, .1))
+        time.sleep(rd.truncated_normal_sample(0, .1, .02))
         pag.keyUp("shift")
 
     def drop(self, slots: List[int]) -> None:
