@@ -135,7 +135,8 @@ class OSRSWoodcutting(OSRSBot):
     
     def hasMouseMoved(self):
         p = pag.position()
-        if not self.prevPos or self.prevPos.x != p.x or self.prevPos.y != p.y:
+        
+        if not self.prevPos or self.prevPos.x != p.x or self.prevPos.y != p.y or rd.random_chance(.15):
             self.prevPos = p
             return True
         
