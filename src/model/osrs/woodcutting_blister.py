@@ -87,7 +87,8 @@ class OSRSWoodcutting(OSRSBot):
 
             self.checkInventory()
             self.clickTree()
-            self.waitWoodcut()        
+            if self.waitWoodcut() == 2:
+                time.sleep(rd.truncated_normal_sample(.5, 2.5, 1))
 
             self.log_msg("Current xp: " + str(self.api_m.get_skill_xp("Woodcutting")))
             if self.api_m.get_skill_xp("Woodcutting") > 13030000:
