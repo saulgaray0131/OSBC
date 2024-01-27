@@ -250,6 +250,9 @@ class RuneLiteObject:
             A Point relative to the client window.
         """
         return Point(point[0] + self.rect.left, point[1] + self.rect.top)
+    
+    def point_exists(self, p: list) -> bool:
+        return self.__point_exists(p)
 
     def __point_exists(self, p: list) -> bool:
         """

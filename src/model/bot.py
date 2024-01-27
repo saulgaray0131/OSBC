@@ -85,6 +85,9 @@ class Bot(ABC):
     status = BotStatus.STOPPED
     thread: BotThread = None
 
+    # Generate optimized paths for a 4x7 grid
+    optimized_paths = None
+
     @abstractmethod
     def __init__(self, game_title, bot_title, description, window: Window):
         """
@@ -232,6 +235,33 @@ class Bot(ABC):
         """
         self.controller.clear_log()
 
+    def generate_optimized_paths(self, rows, cols):
+        """Generate all possible optimized paths for a given grid size."""
+        paths = []
+
+        # Helper function to convert grid coordinates to button number
+        def coord_to_num(row, col):
+            return row * cols + col
+
+        # Generate paths starting from each corner and moving in both horizontal and vertical directions first
+        for start_row in [0, rows - 1]:
+            for start_col in [0, cols - 1]:
+                for hor_first in [True, False]:
+                    path = []
+                    for r in range(rows):
+                        row = start_row + (-1 if start_row != 0 else 1) * r
+                        for c in range(cols):
+                            col = start_col + (-1 if start_col != 0 else 1) * c
+                            if hor_first or r == 0:
+                                path.append(coord_to_num(row, col))
+                            else:
+                                path.append(coord_to_num(col, row))
+                    if not hor_first:
+                        path = path[:cols] + path[cols:][::-1]
+                    paths.append(path)
+
+        return paths
+
     # --- Misc Utility Functions
     def drop_all(self, skip_rows: int = 0, skip_slots: List[int] = None) -> None:
         """
@@ -241,6 +271,13 @@ class Bot(ABC):
             skip_slots: The indices of slots to avoid dropping.
         """
         self.log_msg("Dropping inventory...")
+
+        if self.optimized_paths == None:
+            self.optimized_paths = [[0,1,4,5,8,9,12,13,16,17,20,21,24,25,26,27,22,23,18,19,14,15,10,11,6,7,2,3],
+                                    [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27],
+                                    [0,1,2,3,7,6,5,4,8,9,10,11,15,14,13,12,16,17,18,19,20,21,22,23,27,26,25,24],
+                                    [0,1,4,5,8,9,12,13,16,17,20,21,24,25,2,3,6,7,10,11,14,15,18,19,22,23,26,27]]
+
         # Determine slots to skip
         if skip_slots is None:
             skip_slots = []
@@ -249,19 +286,25 @@ class Bot(ABC):
             skip_slots = np.unique(row_skip + skip_slots)
         # Start dropping
         pag.keyDown("shift")
-        for i, slot in enumerate(self.win.inventory_slots):
+        time.sleep(rd.fancy_normal_sample(.05, .2))
+        mpath = rd.random.choice(self.optimized_paths)
+
+        for i in mpath:
+            slot = self.win.inventory_slots[i]
             if i in skip_slots:
                 continue
             p = slot.random_point()
+            time.sleep(rd.fancy_normal_sample(.02, .08))
             self.mouse.move_to(
                 (p[0], p[1]),
                 mouseSpeed="fastest",
-                knotsCount=1,
+                knotsCount= rd.random.choice([1,1,1,1,1,0,0,0,0]),
                 offsetBoundaryY=40,
                 offsetBoundaryX=40,
                 tween=pytweening.easeInOutQuad,
             )
             self.mouse.click()
+        time.sleep(rd.fancy_normal_sample(.05, .1))
         pag.keyUp("shift")
 
     def drop(self, slots: List[int]) -> None:
