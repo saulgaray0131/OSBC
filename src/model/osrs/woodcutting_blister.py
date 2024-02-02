@@ -130,13 +130,13 @@ class OSRSWoodcutting(OSRSBot):
         
         time.sleep(rd.truncated_normal_sample(.5, 3, .6))
 
-        self.mouse.move_to(tag.random_point(), mouseSpeed="medium")
+        self.mouse.move_to(tag.random_point())
         self.mouse.click()
 
     def sleepMouse(self):
         sleep_view = rd.random.choice([self.win.chat, self.win.control_panel, rd.random.choice(self.win.spellbook_normal)])
         time.sleep(rd.truncated_normal_sample(1, 6, 3.2))
-        self.mouse.move_to(sleep_view.random_point(), mouseSpeed="slow", knotsCount=1)
+        self.mouse.move_to(sleep_view.random_point(), mouseSpeed="medium", knotsCount=1)
 
     def checkInventory(self):
         if(len(self.api_m.get_inv_item_indices(ids.REDWOOD_LOGS)) != 28):
