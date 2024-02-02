@@ -134,8 +134,12 @@ class OSRSWoodcutting(OSRSBot):
         self.mouse.click()
 
     def sleepMouse(self):
-        sleep_view = rd.random.choice([self.win.chat, self.win.control_panel, rd.random.choice(self.win.spellbook_normal)])
+        sleep_view = rd.random.choice([self.win.chat, self.win.control_panel, rd.random.choice(self.win.spellbook_normal), None, None])
         time.sleep(rd.truncated_normal_sample(1, 6, 3.2))
+
+        if sleep_view == None:
+            return
+        
         self.mouse.move_to(sleep_view.random_point(), mouseSpeed="medium", knotsCount=1)
 
     def checkInventory(self):
