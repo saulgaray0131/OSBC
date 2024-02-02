@@ -87,6 +87,8 @@ class OSRSWoodcutting(OSRSBot):
 
             self.checkInventory()
             self.clickTree()
+            self.sleepMouse()
+
             if self.waitWoodcut() == 2:
                 time.sleep(rd.truncated_normal_sample(.5, 2.5, 1))
 
@@ -101,7 +103,7 @@ class OSRSWoodcutting(OSRSBot):
     def waitWoodcut(self):
         count = 0
         while count < 500:
-            if(len(self.api_m.get_inv_item_indices(ids.BLISTERWOOD_LOGS)) >= 28):
+            if(len(self.api_m.get_inv_item_indices(ids.REDWOOD_LOGS)) >= 28):
                 self.log_msg("Inventory Full")
                 return 2
             
@@ -113,21 +115,31 @@ class OSRSWoodcutting(OSRSBot):
             count += 1
 
     def clickTree(self):
-        tree_tag = self.get_nearest_tag(clr.YELLOW)
-
-        if tree_tag == None:
-            self.log_msg("Tree tag not found")
+        tree_tags = self.get_all_tagged_in_rect(self.win.game_view, clr.RED)
+        if tree_tags == None:
+            self.log_msg("Tree tags not found")
             return 2
         
-        if self.hasMouseMoved():
-            self.log_msg("Tree click - Mouse has moved")
-            self.mouse.move_to(tree_tag.random_point())
+        time.sleep(rd.truncated_normal_sample(.5, 10, 2.5))
         
-        self.hasMouseMoved()
+        if self.get_special_energy() == 100:
+            self.mouse.move_to(self.win.spec_orb.random_point())
+            self.mouse.click()
+        
+        tag = rd.random.choice(tree_tags)
+        
+        time.sleep(rd.truncated_normal_sample(.5, 3, .6))
+
+        self.mouse.move_to(tag.random_point(), mouseSpeed="medium")
         self.mouse.click()
 
+    def sleepMouse(self):
+        sleep_view = rd.random.choice([self.win.chat, self.win.control_panel, rd.random.choice(self.win.spellbook_normal)])
+        time.sleep(rd.truncated_normal_sample(1, 6, 3.2))
+        self.mouse.move_to(sleep_view.random_point(), mouseSpeed="slow", knotsCount=1)
+
     def checkInventory(self):
-        if(len(self.api_m.get_inv_item_indices(ids.BLISTERWOOD_LOGS)) != 28):
+        if(len(self.api_m.get_inv_item_indices(ids.REDWOOD_LOGS)) != 28):
                 self.log_msg("Inventory Not Full")
                 return 2
         
