@@ -116,8 +116,9 @@ class OSRSWoodcutting(OSRSBot):
 
     def clickTree(self):
         tree_tags = self.get_all_tagged_in_rect(self.win.game_view, clr.RED)
-        if tree_tags == None:
+        if len(tree_tags) == 0 or tree_tags == None:
             self.log_msg("Tree tags not found")
+            time.sleep(30)
             return 2
         
         time.sleep(rd.truncated_normal_sample(.5, 10, 2.5))
