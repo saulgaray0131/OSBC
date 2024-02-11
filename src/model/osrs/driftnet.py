@@ -121,6 +121,10 @@ class OSRSDriftNet(OSRSBot):
             time.sleep(rd.truncated_normal_sample(4, 20, 12) * 60)
 
     def clickSpot(self):
+
+        if not self.isFocused():
+            time.sleep(rd.truncated_normal_sample(2, 30, 4))
+
         spot_tag = self.get_nearest_tag(clr.RED)
 
         if spot_tag == None:
@@ -147,26 +151,6 @@ class OSRSDriftNet(OSRSBot):
             time.sleep(.5)
             count += 1
 
-    def clickTree(self):
-        tree_tags = self.get_all_tagged_in_rect(self.win.game_view, clr.RED)
-        if len(tree_tags) == 0 or tree_tags == None:
-            self.log_msg("Tree tags not found")
-            time.sleep(30)
-            return 2
-        
-        time.sleep(rd.truncated_normal_sample(.5, 10, 2.5))
-        
-        if self.get_special_energy() == 100:
-            self.mouse.move_to(self.win.spec_orb.random_point())
-            self.mouse.click()
-        
-        tag = rd.random.choice(tree_tags)
-        
-        time.sleep(rd.truncated_normal_sample(.5, 3, .6))
-
-        self.mouse.move_to(tag.random_point())
-        self.mouse.click()
-
     def sleepMouse(self):
         sleep_view = rd.random.choice([self.win.chat, self.win.control_panel, rd.random.choice(self.win.spellbook_normal), None, None, None])
         time.sleep(rd.truncated_normal_sample(1, 6, 3.2))
@@ -183,7 +167,10 @@ class OSRSDriftNet(OSRSBot):
         
 
         self.log_msg("Dropping items...")
-        time.sleep(rd.truncated_normal_sample(2, 60, 4))
+        if not self.isFocused():
+            time.sleep(rd.truncated_normal_sample(2, 60, 4))
+        else:
+            time.sleep(1)
 
         skip_slots = [0, 1]
         skip_slots[0] = self.api_m.get_first_occurrence(ids.BARBARIAN_ROD)
@@ -191,6 +178,18 @@ class OSRSDriftNet(OSRSBot):
 
         self.drop_all(skip_slots=skip_slots)
         time.sleep(rd.truncated_normal_sample(.5, 3, .6))
+
+    def isFocused(self):
+        if self.focus_time == None:
+            self.focus_timeout = 10
+            self.focus_time = time.time()
+        
+        if time.time() - self.focus_time > self.focus_timeout:
+            self.focus_time = time()
+            return True
+
+        self.focus_time = time()
+        return False 
     
     def hasMouseMoved(self):
         p = pag.position()
