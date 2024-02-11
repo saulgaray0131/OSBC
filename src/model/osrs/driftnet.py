@@ -180,6 +180,7 @@ class OSRSDriftNet(OSRSBot):
 
         self.drop_all(skip_slots=skip_slots)
         time.sleep(rd.truncated_normal_sample(.5, 3, .6))
+        self.isFocused()
 
     def isFocused(self):
         if time.time() - self.focus_time > self.focus_timeout:
