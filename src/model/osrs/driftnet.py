@@ -184,10 +184,12 @@ class OSRSDriftNet(OSRSBot):
     def isFocused(self):
         if time.time() - self.focus_time > self.focus_timeout:
             self.focus_time = time.time()
-            return True
+            self.log_msg("Not focused")
+            return False
 
         self.focus_time = time.time()
-        return False 
+        self.log_msg("Is focused")
+        return True
     
     def hasMouseMoved(self):
         p = pag.position()
