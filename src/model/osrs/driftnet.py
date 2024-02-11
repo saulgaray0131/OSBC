@@ -183,7 +183,7 @@ class OSRSDriftNet(OSRSBot):
         
 
         self.log_msg("Dropping items...")
-        time.sleep(rd.truncated_normal_sample(1, 10, 2))
+        time.sleep(rd.truncated_normal_sample(2, 60, 4))
 
         skip_slots = [0, 1]
         skip_slots[0] = self.api_m.get_first_occurrence(ids.BARBARIAN_ROD)
