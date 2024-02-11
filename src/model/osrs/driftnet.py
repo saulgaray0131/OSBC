@@ -81,6 +81,8 @@ class OSRSDriftNet(OSRSBot):
         self.xp = self.api_m.get_skill_xp("Fishing")
         self.xp_time = time.time()
         self.xp_timeout = 30
+        self.focus_timeout = 10
+        self.focus_time = time.time()
 
         while time.time() - start_time < end_time:
             # -- Perform bot actions here --
@@ -180,10 +182,6 @@ class OSRSDriftNet(OSRSBot):
         time.sleep(rd.truncated_normal_sample(.5, 3, .6))
 
     def isFocused(self):
-        if self.focus_time == None:
-            self.focus_timeout = 10
-            self.focus_time = time.time()
-        
         if time.time() - self.focus_time > self.focus_timeout:
             self.focus_time = time()
             return True
