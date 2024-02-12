@@ -121,6 +121,7 @@ class OSRSDriftNet(OSRSBot):
         if rd.random_chance(.002):
             self.log_msg("Taking break...")
             time.sleep(rd.truncated_normal_sample(4, 20, 12) * 60)
+            self.xp_time = time.time()
 
     def clickSpot(self):
 
