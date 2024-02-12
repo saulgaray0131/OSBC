@@ -59,7 +59,7 @@ class OSRSDriftNet(OSRSBot):
         """
         # Setup APIs
         self.api_m = MorgHTTPSocket()
-        # api_s = StatusSocket()
+        self.api_s = StatusSocket()
         # Main loop
         start_time = time.time()
         end_time = self.running_time * 60
@@ -81,7 +81,7 @@ class OSRSDriftNet(OSRSBot):
         self.xp = self.api_m.get_skill_xp("Fishing")
         self.xp_time = time.time()
         self.xp_timeout = 30
-        self.focus_timeout = 10
+        self.focus_timeout = 15
         self.focus_time = time.time()
 
         while time.time() - start_time < end_time:
@@ -118,7 +118,7 @@ class OSRSDriftNet(OSRSBot):
         self.stop()
 
     def checkBreak(self):
-        if rd.random_chance(.002):
+        if rd.random_chance(.001):
             self.log_msg("Taking break...")
             time.sleep(rd.truncated_normal_sample(4, 20, 12) * 60)
             self.xp_time = time.time()
