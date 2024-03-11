@@ -28,7 +28,7 @@ class MorgHTTPSocket:
         self.equip_endpoint = "equip"
         self.events_endpoint = "events"
 
-        self.timeout = 1
+        self.timeout = 5
 
     def __do_get(self, endpoint: str) -> dict:
         """
@@ -39,10 +39,14 @@ class MorgHTTPSocket:
         Raises:
                 SocketError: If the endpoint is not valid or the server is not running.
         """
-        try:
-            response = requests.get(f"{self.base_endpoint}{endpoint}", timeout=self.timeout)
-        except ConnectionError as e:
-            raise SocketError("Unable to reach socket", endpoint) from e
+        succ = False
+        while not succ:
+            try:
+                response = requests.get(f"{self.base_endpoint}{endpoint}", timeout=self.timeout)
+                succ = True
+            except ConnectionError as e:
+                continue
+                raise SocketError("Unable to reach socket", endpoint) from e
 
         if response.status_code != 200:
             if response.status_code == 204:

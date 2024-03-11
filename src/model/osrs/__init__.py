@@ -4,3 +4,4 @@ from .construction import OSRSConstruction
 from .fletch import OSRSFletching
 
 from .crafting import OSRSCrafting
+from .wintertodt import OSRSWintertodt
