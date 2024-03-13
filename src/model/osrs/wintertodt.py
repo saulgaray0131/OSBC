@@ -423,11 +423,11 @@ class OSRSWintertodt(OSRSBot):
                 break
 
     def waitForIdleFletch(self):
-        timeout = 2.4
+        timeout = 2
 
         lastCount = self.countItems(ids.BRUMA_KINDLING)
 
-        while lastCount <= 20:
+        while lastCount < 20:
             time.sleep(timeout)
             currentCount = self.countItems(ids.BRUMA_KINDLING)
             if lastCount == currentCount and self.api_m.get_is_player_idle():
