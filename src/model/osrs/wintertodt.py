@@ -427,7 +427,7 @@ class OSRSWintertodt(OSRSBot):
 
         lastCount = self.countItems(ids.BRUMA_KINDLING)
 
-        while lastCount <= 5:
+        while lastCount <= 20:
             time.sleep(timeout)
             currentCount = self.countItems(ids.BRUMA_KINDLING)
             if lastCount == currentCount and self.api_m.get_is_player_idle():
