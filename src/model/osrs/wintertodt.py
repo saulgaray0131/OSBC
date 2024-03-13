@@ -266,7 +266,7 @@ class OSRSWintertodt(OSRSBot):
         safespot = (1638, 3988, 0)
 
         count = 0
-        while not self.api_m.get_is_inv_full() and self.rootCount + self.countItems(ids.BRUMA_ROOT) < 50 and self.countItems(ids.SUPPLY_CRATE) != 1:
+        while not self.api_m.get_is_inv_full() and self.rootCount + self.countItems(ids.BRUMA_ROOT) < 45 and self.countItems(ids.SUPPLY_CRATE) != 1:
             
             if self.api_m.get_player_position() != safespot:
                 location_blue = self.get_nearest_tag(clr.BLUE)
