@@ -225,7 +225,7 @@ class OSRSWintertodt(OSRSBot):
 
         first = True
 
-        while self.countItems(ids.BRUMA_ROOT) > 0:
+        while self.countItems(ids.BRUMA_ROOT) + self.countItems(ids.BRUMA_KINDLING) > 0:
             brazier_tag = None
             count = 0
             broken = False
