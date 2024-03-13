@@ -423,7 +423,7 @@ class OSRSWintertodt(OSRSBot):
                 break
 
     def waitForIdleFletch(self):
-        timeout = 2
+        timeout = 2.4
 
         lastCount = self.countItems(ids.BRUMA_KINDLING)
 
