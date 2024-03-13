@@ -107,7 +107,7 @@ class OSRSWintertodt(OSRSBot):
                 if self.isGameDone():
                     break
 
-                if self.rootCount <= 45:
+                if self.rootCount <= 30:
                     self.fletchBatch()
 
                 self.burnRoots()
@@ -205,7 +205,7 @@ class OSRSWintertodt(OSRSBot):
 
     def fletchBatch(self):
 
-        while self.countItems(ids.BRUMA_KINDLING) < 4:
+        while self.countItems(ids.BRUMA_KINDLING) < 20:
 
             knife_tag = self.getInvItem(ids.KNIFE)
             log_tag = self.getInvItem(ids.BRUMA_ROOT, random=True)
