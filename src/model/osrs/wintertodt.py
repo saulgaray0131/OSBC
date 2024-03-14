@@ -307,7 +307,9 @@ class OSRSWintertodt(OSRSBot):
             return
         
         self.mouse.move_to(location_blue.random_point())
+        pag.keyDown("shift")
         self.mouse.click()
+        pag.keyUp("shift")
 
         time.sleep(2)
         self.waitForMovement()
@@ -336,7 +338,9 @@ class OSRSWintertodt(OSRSBot):
             time.sleep(.2)
         
         self.mouse.move_to(location_blue.random_point())
+        pag.keyDown("shift")
         self.mouse.click()
+        pag.keyUp("shift")
 
         time.sleep(2)
         self.waitForMovement()
