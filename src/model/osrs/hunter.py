@@ -88,7 +88,7 @@ class OSRSHunter(OSRSBot):
             if trap_tag:
                 self.mouse.move_to(trap_tag.random_point(), mouseSpeed="fastest")
                 self.mouse.click()
-                time.sleep(5)
+                time.sleep(7)
 
            
             #self.stop()
