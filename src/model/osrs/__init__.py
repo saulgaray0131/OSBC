@@ -5,3 +5,4 @@ from .fletch import OSRSFletching
 
 from .crafting import OSRSCrafting
 from .wintertodt import OSRSWintertodt
+from .hunter import OSRSHunter
