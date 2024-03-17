@@ -86,7 +86,7 @@ class OSRSHunter(OSRSBot):
             trap_tag = self.get_nearest_tag(clr.GREEN)
 
             if trap_tag:
-                self.mouse.move_to(trap_tag.random_point(), mouseSpeed="fastest")
+                self.mouse.move_to(trap_tag.center(), mouseSpeed="fastest")
                 self.mouse.click()
                 time.sleep(9)
 
